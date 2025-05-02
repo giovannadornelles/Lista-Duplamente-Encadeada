@@ -11,6 +11,26 @@ int main() {
     char nome_usuario[100];
     char data[11];
 
+// --- Inserções automáticas ---
+Livro l;
+for (int i = 0; i < 9; i++) {
+    sprintf(l.titulo, "Livro %d", i + 1);
+    sprintf(l.autor, "Autor %d", i + 1);
+    l.ano = 2000 + i;
+    sprintf(l.isbn, "00000000000%d", i + 1);
+    l.status = DISPONIVEL;
+    l.nome_usuario[0] = '\0';
+    l.data_emprestimo[0] = '\0';
+
+    if (i < 3)
+        inserirLivroPosicao(&lista, l, 0);                  // Início
+    else if (i < 6)
+        inserirLivroPosicao(&lista, l, lista.tamanho / 2);  // Meio
+    else
+        inserirLivroPosicao(&lista, l, lista.tamanho);      // Fim
+}
+
+
     do {
         printf("\n--- MENU BIBLIOTECA ---\n");
         printf("1. Cadastrar Livro\n2. Consultar por ISBN\n3. Emprestar Livro\n4. Devolver Livro\n");
